@@ -7,13 +7,13 @@
 void atualizar_veiculo(char placa[8], long posicao) {
     system("clear");
     printf("╔════════════════════════════════════════╗\n");
-    printf("║         ATUALIZAR VEÍCULO              ║\n");
+    printf("║         ATUALIZAR VEICULO              ║\n");
     printf("╚════════════════════════════════════════╝\n\n");
     
     FILE *arquivo_veiculos = fopen("veiculos.bin", "r+b");
     if(arquivo_veiculos == NULL)
     {
-        printf("❌ Erro ao abrir arquivo de veículos!\n");
+        printf("❌ Erro ao abrir arquivo de veiculos!\n");
         printf("Pressione Enter para voltar...");
         getchar(); 
         getchar();
@@ -24,16 +24,16 @@ void atualizar_veiculo(char placa[8], long posicao) {
     fseek(arquivo_veiculos, posicao, SEEK_SET);
     fread(&veiculo, sizeof(Veiculo), 1, arquivo_veiculos);
     
-    printf("Veículo: %s %s - Placa: %s\n\n", veiculo.marca, veiculo.modelo, veiculo.placa);
-    printf("Valor atual da diária: R$ %.2f\n\n", veiculo.valor_diaria);
+    printf("Veiculo: %s %s - Placa: %s\n\n", veiculo.marca, veiculo.modelo, veiculo.placa);
+    printf("Valor atual da diaria: R$ %.2f\n\n", veiculo.valor_diaria);
     
     float novo_valor;
-    printf("Digite o novo valor da diária: R$ ");
+    printf("Digite o novo valor da diaria: R$ ");
     scanf("%f", &novo_valor);
     
     if(novo_valor <= 0)
     {
-        printf("❌ Valor inválido!\n");
+        printf("❌ Valor invalido!\n");
         printf("Pressione Enter para voltar...");
         getchar(); getchar();
         fclose(arquivo_veiculos);
@@ -46,7 +46,7 @@ void atualizar_veiculo(char placa[8], long posicao) {
     fwrite(&veiculo, sizeof(Veiculo), 1, arquivo_veiculos);
     fclose(arquivo_veiculos);
     
-    printf("\n✅ Valor da diária atualizado com sucesso!\n");
+    printf("\n✅ Valor da diaria atualizado com sucesso!\n");
     printf("Novo valor: R$ %.2f\n\n", veiculo.valor_diaria);
     printf("Pressione Enter para continuar...");
     getchar(); 
