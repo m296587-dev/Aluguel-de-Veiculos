@@ -26,20 +26,25 @@ void dados_cliente()
         scanf(" %[^\n]", novo_cliente.nome);
         
         //========================================================
-        printf("\nCPF (11 dígitos): ");
+        printf("\nCPF (11 digitos): ");
         char cpf_temp[12];
+        int cpf_duplicado, cpf_valido;
+        
         do {
+            cpf_duplicado = 0;
+            cpf_valido = 0;
+            
             scanf("%11s", cpf_temp);
             while (getchar() != '\n');
     
             if(strlen(cpf_temp) != 11)
             {
-                printf("CPF deve ter exatamente 11 dígitos! Digite novamente: ");
+                printf("CPF deve ter exatamente 11 digitos! Digite novamente: ");
                 continue;
             }
     
             int apenas_numeros = 1;
-            for(int i = 0; i < 11; i++) {
+            for(int i = 0; i < 11; i++){
                 if(!isdigit(cpf_temp[i]))
                 {
                     apenas_numeros = 0;
@@ -49,20 +54,44 @@ void dados_cliente()
     
             if(!apenas_numeros)
             {
-                printf("CPF deve conter apenas números! Digite novamente: ");
+                printf("CPF deve conter apenas numeros! Digite novamente: ");
                 continue;
             }
     
             if(!validarCPF(cpf_temp))
             {
-            printf("CPF inválido! Digite novamente: ");
+                printf("CPF invalido! Digite novamente: ");
             } else {
+                cpf_valido = 1;
                 strcpy(novo_cliente.CPF, cpf_temp);
             }
-        }while(!validarCPF(cpf_temp));
+            
+            if(cpf_valido)
+            {
+                FILE *clientes_leitura = fopen("clientes.bin", "rb");
+                if(clientes_leitura != NULL)
+                {
+                    Cliente cliente_existente;
+                    while(fread(&cliente_existente, sizeof(Cliente), 1, clientes_leitura)){
+                        if(strcmp(cliente_existente.CPF, novo_cliente.CPF) == 0)
+                        {
+                            cpf_duplicado = 1;
+                            break;
+                        }
+                    }
+                    fclose(clientes_leitura);
+                }
+                
+                if(cpf_duplicado)
+                {
+                    printf("❌ CPF ja cadastrado! Digite um CPF diferente: ");
+                }
+            }
+            
+        } while(cpf_duplicado || !cpf_valido);
 
         //========================================================
-        printf("\nCNH (11 dígitos): ");
+        printf("\nCNH (11 digitos): ");
         char cnh_temp[12];
         do {
             scanf("%11s", cnh_temp);
@@ -70,7 +99,7 @@ void dados_cliente()
     
             if(strlen(cnh_temp) != 11)
             {
-                printf("CNH deve ter exatamente 11 dígitos! Digite novamente: ");
+                printf("CNH deve ter exatamente 11 digitos! Digite novamente: ");
                 continue;
             }
     
@@ -83,13 +112,13 @@ void dados_cliente()
             }
     
             if(!apenas_numeros){
-                printf("CNH deve conter apenas números! Digite novamente: ");
+                printf("CNH deve conter apenas numeros! Digite novamente: ");
                 continue;
             }
     
                 if(!validarCNH(cnh_temp))
                 {
-                    printf("CNH inválida! Digite novamente: ");
+                    printf("CNH invalida! Digite novamente: ");
                 } else {
                     strcpy(novo_cliente.CNH, cnh_temp);
                 }
@@ -104,14 +133,14 @@ void dados_cliente()
                 novo_cliente.categoria_cnh[i] = toupper(novo_cliente.categoria_cnh[i]);
             }
             if(!validarCategoriaCNH(novo_cliente.categoria_cnh)){
-                printf("Categoria inválida! Digite (A, B, C, D, E, AB): ");
+                printf("Categoria invalida! Digite (A, B, C, D, E, AB): ");
             }
         }while(!validarCategoriaCNH(novo_cliente.categoria_cnh));
         
         //==========================================================
-        printf("\nTelefone (apenas números): ");
+        printf("\nTelefone (apenas numeros): ");
         scanf("%lld", &novo_cliente.telefone);
-        while (getchar() != '\n');  // limpa buffer
+        while (getchar() != '\n'); 
         
         //==========================================================
         
@@ -124,7 +153,7 @@ void dados_cliente()
         printf("\n✅ Cliente cadastrado com sucesso!\n\n");
         
         printf("1 - Cadastrar novo cliente\n2 - Voltar\n\n");
-        printf("\nSelecione a opção: ");
+        printf("\nSelecione a opcao: ");
         scanf("%d", &opcao_final);
         
         while (getchar() != '\n');
