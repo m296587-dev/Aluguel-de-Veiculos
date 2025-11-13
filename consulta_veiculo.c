@@ -11,18 +11,18 @@ void consulta_veiculo() {
     do {
         system("clear");
         printf("╔════════════════════════════════════════╗\n");
-        printf("║           CONSULTA DE VEÍCULO          ║\n");
+        printf("║           CONSULTA DE VEICULO          ║\n");
         printf("╚════════════════════════════════════════╝\n\n");
         
         printf("1 - Buscar por marca\n");
         printf("2 - Voltar ao menu principal\n\n");
-        printf("Selecione a opção: ");
+        printf("Selecione a opcao: ");
         scanf("%d", &opcao);
         
         if(opcao == 2) {
             return;
         }
-        printf("Digite a marca do veículo: ");
+        printf("Digite a marca do veiculo: ");
         scanf("%29s", marca_busca);
         
         for(int i = 0; marca_busca[i]; i++){
@@ -35,7 +35,7 @@ void consulta_veiculo() {
         FILE *arquivo_veiculos = fopen("veiculos.bin", "rb");
         if(arquivo_veiculos == NULL)
         {
-            printf("❌ Erro ao abrir arquivo de veículos!\n\n");
+            printf("❌ Erro ao abrir arquivo de veiculos!\n\n");
             printf("Pressione Enter para voltar...");
             getchar(); 
             getchar();
@@ -54,7 +54,7 @@ void consulta_veiculo() {
         
         if(count_veiculos == 0)
         {
-            printf("❌ Nenhum veículo da marca %s encontrado!\n\n", marca_busca);
+            printf("❌ Nenhum veiculo da marca %s encontrado!\n\n", marca_busca);
             printf("Pressione Enter para voltar...");
             getchar(); 
             getchar();
@@ -63,25 +63,25 @@ void consulta_veiculo() {
         
         system("clear");
         printf("╔════════════════════════════════════════╗\n");
-        printf("║           VEÍCULOS ENCONTRADOS         ║\n");
+        printf("║           VEICULOS ENCONTRADOS         ║\n");
         printf("╚════════════════════════════════════════╝\n\n");
         
         for(int i = 0; i < count_veiculos; i++){
             printf("%d - %s %s | Placa: %s\n", 
                    i + 1, veiculos[i].marca, veiculos[i].modelo, veiculos[i].placa);
-            printf("   Categoria: %s | Diária: R$ %.2f\n",
+            printf("   Categoria: %s | Diaria: R$ %.2f\n",
                    veiculos[i].categoria_cnh, veiculos[i].valor_diaria);
             printf("   Status: %s\n\n", 
-                   veiculos[i].alugado ? "Alugado 🔴" : "Disponível ✅");
+                   veiculos[i].alugado ? "Alugado 🔴" : "Disponivel ✅");
         }
         
         int selecao;
-        printf("Selecione o veículo (1-%d): ", count_veiculos);
+        printf("Selecione o veiculo (1-%d): ", count_veiculos);
         scanf("%d", &selecao);
         
         if(selecao < 1 || selecao > count_veiculos)
         {
-            printf("❌ Opção inválida!\n");
+            printf("❌ Opcao invalida!\n");
             printf("Pressione Enter para voltar...");
             getchar(); getchar();
             return;
@@ -106,22 +106,22 @@ void consulta_veiculo() {
         
         system("clear");
         printf("╔════════════════════════════════════════╗\n");
-        printf("║           DADOS DO VEÍCULO             ║\n");
+        printf("║           DADOS DO VEICULO             ║\n");
         printf("╚════════════════════════════════════════╝\n\n");
         
         printf("Marca: %s\n", veiculo_selecionado.marca);
         printf("Modelo: %s\n", veiculo_selecionado.modelo);
         printf("Placa: %s\n", veiculo_selecionado.placa);
         printf("Categoria CNH: %s\n", veiculo_selecionado.categoria_cnh);
-        printf("Valor da diária: R$ %.2f\n", veiculo_selecionado.valor_diaria);
+        printf("Valor da diaria: R$ %.2f\n", veiculo_selecionado.valor_diaria);
         printf("Status: %s\n", veiculo_selecionado.ativo ? "Ativo ✅" : "Inativo ❌");
-        printf("Locação: %s\n\n", 
-               veiculo_selecionado.alugado ? "Alugado 🔴" : "Disponível ✅");
+        printf("Locacao: %s\n\n", 
+               veiculo_selecionado.alugado ? "Alugado 🔴" : "Disponivel ✅");
         
         if(veiculo_selecionado.alugado)
         {
             printf("═══════════════════════════════════════════\n");
-            printf("            INFORMAÇÕES DA LOCAÇÃO        \n");
+            printf("            INFORMACOES DA LOCAÇÃO        \n");
             printf("═══════════════════════════════════════════\n\n");
             
             FILE *arquivo_locacoes = fopen("relatorios.bin", "rb");
@@ -134,7 +134,7 @@ void consulta_veiculo() {
                     if(strcmp(locacao.placa_veiculo, veiculo_selecionado.placa) == 0)
                     {
                         Cliente cliente;
-                        char nome_cliente[100] = "Cliente não encontrado";
+                        char nome_cliente[100] = "Cliente nao encontrado";
                         FILE *arquivo_clientes = fopen("clientes.bin", "rb");
                         if(arquivo_clientes != NULL)
                         {
@@ -150,7 +150,7 @@ void consulta_veiculo() {
                         
                         printf("Cliente: %s\n", nome_cliente);
                         printf("CPF: %s\n", locacao.CPF_cliente);
-                        printf("Período: %s a %s\n", locacao.data_aluguel, locacao.data_devolucao);
+                        printf("Periodo: %s a %s\n", locacao.data_aluguel, locacao.data_devolucao);
                         printf("Dias contratados: %d\n", locacao.dias_aluguel);
                         printf("Valor total: R$ %.2f\n", locacao.valor_total);
                         printf("Status: %s\n\n", 
@@ -163,19 +163,19 @@ void consulta_veiculo() {
                 
                 if(!locacao_encontrada)
                 {
-                    printf("Informações de locação não encontradas.\n\n");
+                    printf("Informacoes de locacao nao encontradas.\n\n");
                 }
             }
         }
         
         printf("═══════════════════════════════════════════\n");
-        printf("                  OPÇÕES                  \n");
+        printf("                  OPCOES                  \n");
         printf("═══════════════════════════════════════════\n\n");
         
         printf("1 - Voltar\n");
-        printf("2 - Atualizar valor da diária\n");
-        printf("3 - Excluir veículo\n\n");
-        printf("Selecione a opção: ");
+        printf("2 - Atualizar valor da diaria\n");
+        printf("3 - Excluir veiculo\n\n");
+        printf("Selecione a opcao: ");
         scanf("%d", &opcao);
         
         switch(opcao){
@@ -185,8 +185,8 @@ void consulta_veiculo() {
             case 2:
                 if(veiculo_selecionado.alugado)
                 {
-                    printf("\n❌ Não é possível alterar o valor da diária!\n");
-                    printf("Motivo: Veículo está atualmente alugado.\n\n");
+                    printf("\n❌ Nao e possível alterar o valor da diaria!\n");
+                    printf("Motivo: Veiculo esta atualmente alugado.\n\n");
                     printf("Pressione Enter para continuar...");
                     getchar(); 
                     getchar();
@@ -200,7 +200,7 @@ void consulta_veiculo() {
                 break;
                 
             default:
-                printf("❌ Opção inválida!\n");
+                printf("❌ Opcao invalida!\n");
                 printf("Pressione Enter para continuar...");
                 getchar(); getchar();
                 break;
