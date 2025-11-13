@@ -9,7 +9,7 @@ void registro_locacao(){
     do {
         system("clear");
         printf("╔════════════════════════════════════════╗\n");
-        printf("║            RELATÓRIOS DE LOCAÇÃO       ║\n");
+        printf("║            RELATORIOS DE LOCACAO       ║\n");
         printf("╚════════════════════════════════════════╝\n\n");
         
         Locacao locacoes[100];
@@ -18,7 +18,7 @@ void registro_locacao(){
         FILE *arquivo = fopen("relatorios.bin", "rb");
         if(arquivo == NULL)
         {
-            printf("❌ Nenhum relatório de locação encontrado!\n\n");
+            printf("❌ Nenhum relatorio de locacao encontrado!\n\n");
             printf("Pressione Enter para voltar...");
             getchar();
             getchar();
@@ -31,7 +31,7 @@ void registro_locacao(){
         fclose(arquivo);
         
         if(count == 0) {
-            printf("❌ Nenhuma locação registrada!\n\n");
+            printf("❌ Nenhuma locacao registrada!\n\n");
             printf("Pressione Enter para voltar...");
             getchar();
             getchar();
@@ -53,15 +53,15 @@ void registro_locacao(){
             }
         }
         
-        printf("Locações em ordem de prazo de devolução:\n\n");
+        printf("Locacoes em ordem de prazo de devolucao:\n\n");
         for(int i = 0; i < count; i++) {
             printf("%d - CPF: %s | Placa: %s\n", i + 1, locacoes[i].CPF_cliente, locacoes[i].placa_veiculo);
-            printf("   Período: %s até %s | Valor: R$ %.2f\n", 
+            printf("   Periodo: %s ate %s | Valor: R$ %.2f\n", 
                    locacoes[i].data_aluguel, locacoes[i].data_devolucao, locacoes[i].valor_total);
             printf("   Status: %s\n\n", locacoes[i].entregue_no_prazo ? "No prazo ✅" : "Atrasado ❌");
         }
         
-        printf("Selecione uma locação (1-%d) ou 0 para voltar: ", count);
+        printf("Selecione uma locacao (1-%d) ou 0 para voltar: ", count);
         scanf("%d", &opcao);
         
         if(opcao == 0)
@@ -71,7 +71,7 @@ void registro_locacao(){
         
         if(opcao < 1 || opcao > count)
         {
-            printf("❌ Opção inválida!\n");
+            printf("❌ Opção invalida!\n");
             printf("Pressione Enter para continuar...");
             getchar(); 
             getchar();
@@ -82,19 +82,19 @@ void registro_locacao(){
         
         system("clear");
         printf("╔════════════════════════════════════════╗\n");
-        printf("║           DETALHES DA LOCAÇÃO          ║\n");
+        printf("║           DETALHES DA LOCACAO          ║\n");
         printf("╚════════════════════════════════════════╝\n\n");
         
         printf("CPF do Cliente: %s\n", locacao_selecionada.CPF_cliente);
-        printf("Placa do Veículo: %s\n", locacao_selecionada.placa_veiculo);
+        printf("Placa do Veiculo: %s\n", locacao_selecionada.placa_veiculo);
         printf("Data de Aluguel: %s\n", locacao_selecionada.data_aluguel);
-        printf("Data de Devolução: %s\n", locacao_selecionada.data_devolucao);
+        printf("Data de Devolucao: %s\n", locacao_selecionada.data_devolucao);
         printf("Dias Alugados: %d\n", locacao_selecionada.dias_aluguel);
         printf("Valor Total: R$ %.2f\n", locacao_selecionada.valor_total);
         printf("Status: %s\n\n", locacao_selecionada.entregue_no_prazo ? "No prazo ✅" : "Atrasado ❌");
         
         Cliente cliente;
-        char nome_cliente[100] = "NÃO ENCONTRADO";
+        char nome_cliente[100] = "NAO ENCONTRADO";
         FILE *arquivo_clientes = fopen("clientes.bin", "rb");
         if(arquivo_clientes != NULL)
         {
@@ -110,9 +110,9 @@ void registro_locacao(){
         printf("Nome do Cliente: %s\n\n", nome_cliente);
         
         int opcao_locacao;
-        printf("1 - Finalizar Locação (Devolver Veículo)\n");
+        printf("1 - Finalizar Locacao (Devolver Veiculo)\n");
         printf("2 - Voltar para a lista\n\n");
-        printf("Selecione a opção: ");
+        printf("Selecione a opcao: ");
         scanf("%d", &opcao_locacao);
         
         if(opcao_locacao == 1)
@@ -166,9 +166,9 @@ void registro_locacao(){
             system("clear");
             if(removido)
             {
-                printf("\n✅ Locação finalizada com sucesso! Veículo liberado.\n");
+                printf("\n✅ Locacao finalizada com sucesso! Veiculo liberado.\n");
             } else {
-                printf("\n❌ Erro ao finalizar locação!\n");
+                printf("\n❌ Erro ao finalizar locacao!\n");
             }
             
             printf("Pressione Enter para continuar...");
