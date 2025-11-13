@@ -15,7 +15,7 @@ void consulta_cliente() {
         
         printf("1 - Buscar por CPF\n");
         printf("2 - Voltar ao menu principal\n\n");
-        printf("Selecione a opção: ");
+        printf("Selecione a opcao: ");
         scanf("%d", &opcao);
         
         if(opcao == 2) {
@@ -23,12 +23,12 @@ void consulta_cliente() {
         }
         
         if(opcao != 1) {
-            printf("❌ Opção inválida!\n");
+            printf("❌ Opção invalida!\n");
             printf("Pressione Enter para continuar...");
             getchar(); getchar();
             continue;
         }
-        printf("Digite o CPF do cliente (11 dígitos): ");
+        printf("Digite o CPF do cliente (11 digitos): ");
         scanf("%11s", cpf_busca);
         
         Cliente cliente;
@@ -62,7 +62,7 @@ void consulta_cliente() {
         
         if(!cliente_encontrado)
         {
-            printf("❌ Cliente não encontrado ou inativo!\n\n");
+            printf("❌ Cliente nao encontrado ou inativo!\n\n");
             printf("Pressione Enter para voltar...");
             getchar(); 
             getchar();
@@ -82,7 +82,7 @@ void consulta_cliente() {
         printf("Status: %s\n\n", cliente.ativo ? "Ativo ✅" : "Inativo ❌");
         
         printf("═══════════════════════════════════════════\n");
-        printf("            LOCAÇÕES DO CLIENTE           \n");
+        printf("            LOCACOES DO CLIENTE           \n");
         printf("═══════════════════════════════════════════\n\n");
         
         Locacao locacoes[100];
@@ -106,9 +106,9 @@ void consulta_cliente() {
         {
             printf("Nenhuma locação encontrada para este cliente.\n\n");
         } else {
-            printf("Total de locações: %d\n\n", count_locacoes);
+            printf("Total de locacoes: %d\n\n", count_locacoes);
             for(int i = 0; i < count_locacoes; i++){
-                printf("%d - Placa: %s | Período: %s a %s\n", 
+                printf("%d - Placa: %s | Periodo: %s a %s\n", 
                        i + 1, locacoes[i].placa_veiculo, 
                        locacoes[i].data_aluguel, locacoes[i].data_devolucao);
                 printf("   Valor: R$ %.2f | Status: %s\n\n",
@@ -118,7 +118,7 @@ void consulta_cliente() {
         }
         
         printf("═══════════════════════════════════════════\n");
-        printf("                  OPÇÕES                  \n");
+        printf("                  OPCOES                  \n");
         printf("═══════════════════════════════════════════\n\n");
         
         printf("1 - Voltar\n");
@@ -140,7 +140,7 @@ void consulta_cliente() {
                 break;
                 
             default:
-                printf("❌ Opção inválida!\n");
+                printf("❌ Opção invalida!\n");
                 printf("Pressione Enter para continuar...");
                 getchar(); getchar();
                 break;
