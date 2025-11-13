@@ -11,8 +11,8 @@ void excluir_cliente(char cpf_busca[12], long posicao, int tem_locacoes) {
     
     if(tem_locacoes > 0)
     {
-        printf("❌ Não é possível excluir este cliente!\n");
-        printf("O cliente possui %d locação(ões) ativa(s).\n\n", tem_locacoes);
+        printf("❌ Não e possivel excluir este cliente!\n");
+        printf("O cliente possui %d locaçao(oes) ativa(s).\n\n", tem_locacoes);
         printf("Pressione Enter para voltar...");
         getchar(); 
         getchar();
@@ -35,12 +35,12 @@ void excluir_cliente(char cpf_busca[12], long posicao, int tem_locacoes) {
             fseek(arquivo, posicao, SEEK_SET);
             fwrite(&cliente, sizeof(Cliente), 1, arquivo);
             fclose(arquivo);
-            printf("\n✅ Cliente excluído com sucesso!\n");
+            printf("\n✅ Cliente excluido com sucesso!\n");
         } else {
             printf("\n❌ Erro ao excluir cliente!\n");
         }
     } else {
-        printf("\nOperação cancelada.\n");
+        printf("\nOperacao cancelada.\n");
     }
     
     printf("Pressione Enter para continuar...");
