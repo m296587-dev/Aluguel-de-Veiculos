@@ -8,7 +8,7 @@ void atualizar_cliente(char cpf_busca[12], long posicao)
 {
     system("clear");
     printf("╔════════════════════════════════════════╗\n");
-    printf("║           ATUALIZAR CLIENTE           ║\n");
+    printf("║           ATUALIZAR CLIENTE            ║\n");
     printf("╚════════════════════════════════════════╝\n\n");
     
     Cliente cliente;
@@ -27,9 +27,11 @@ void atualizar_cliente(char cpf_busca[12], long posicao)
     
     printf("Deixe em branco (Enter) para manter o valor atual.\n\n");
     
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+    
     printf("Nome atual: %s\n", cliente.nome);
     printf("Novo nome: ");
-    getchar();
     char novo_nome[100];
     fgets(novo_nome, sizeof(novo_nome), stdin);
     novo_nome[strcspn(novo_nome, "\n")] = 0;
@@ -41,7 +43,8 @@ void atualizar_cliente(char cpf_busca[12], long posicao)
     printf("\nCNH atual: %s\n", cliente.CNH);
     printf("Nova CNH: ");
     char nova_cnh[12];
-    scanf("%11s", nova_cnh);
+    fgets(nova_cnh, sizeof(nova_cnh), stdin);
+    nova_cnh[strcspn(nova_cnh, "\n")] = 0;
     if(strlen(nova_cnh) > 0) {
         strcpy(cliente.CNH, nova_cnh);
     }
@@ -49,7 +52,8 @@ void atualizar_cliente(char cpf_busca[12], long posicao)
     printf("\nCategoria CNH atual: %s\n", cliente.categoria_cnh);
     printf("Nova categoria CNH: ");
     char nova_categoria[3];
-    scanf("%2s", nova_categoria);
+    fgets(nova_categoria, sizeof(nova_categoria), stdin);
+    nova_categoria[strcspn(nova_categoria, "\n")] = 0;
     if(strlen(nova_categoria) > 0) {
         for(int i = 0; nova_categoria[i]; i++) {
             nova_categoria[i] = toupper(nova_categoria[i]);
@@ -61,22 +65,28 @@ void atualizar_cliente(char cpf_busca[12], long posicao)
     
     printf("\nTelefone atual: %lld\n", cliente.telefone);
     printf("Novo telefone: ");
-    long long novo_telefone;
-    if(scanf("%lld", &novo_telefone) == 1) {
-        cliente.telefone = novo_telefone;
+    char telefone_str[20];
+    fgets(telefone_str, sizeof(telefone_str), stdin);
+    telefone_str[strcspn(telefone_str, "\n")] = 0;
+    if(strlen(telefone_str) > 0)
+    {
+        long long novo_telefone;
+        if(sscanf(telefone_str, "%lld", &novo_telefone) == 1)
+        {
+            cliente.telefone = novo_telefone;
+        }
     }
-    
     arquivo = fopen("clientes.bin", "r+b");
-    if(arquivo != NULL) {
+    if(arquivo != NULL)
+    {
         fseek(arquivo, posicao, SEEK_SET);
         fwrite(&cliente, sizeof(Cliente), 1, arquivo);
         fclose(arquivo);
         printf("\n✅ Cliente atualizado com sucesso!\n");
     } else {
-        printf("\n❌ Erro ao salvar alterações!\n");
+        printf("\n❌ Erro ao salvar alteracoes!\n");
     }
     
     printf("Pressione Enter para continuar...");
-    getchar(); 
     getchar();
 }
