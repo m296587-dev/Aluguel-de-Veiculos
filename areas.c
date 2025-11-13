@@ -10,10 +10,10 @@
                 while(!voltar_cadastro) { 
                     system("clear");
                     printf("╔════════════════════════════════════════╗\n");
-                    printf("║             ÁREA DE CADASTRO           ║\n");
+                    printf("║             AREA DE CADASTRO           ║\n");
                     printf("╚════════════════════════════════════════╝\n\n");
-                    printf("1 - Cadastrar cliente\n2 - Cadastrar veículo\n3- Voltar\n\n");
-                    printf("\nSelecione a opção desejada: ");
+                    printf("1 - Cadastrar cliente\n2 - Cadastrar veiculo\n3- Voltar\n\n");
+                    printf("\nSelecione a opcao desejada: ");
                     scanf("%d",&opcao_cadastro);
                     
                     switch(opcao_cadastro){
@@ -31,7 +31,7 @@
                         }
                         default:{
                             system("clear");
-                            printf("⚠️ Opção não existe!\n\n");
+                            printf("⚠️ Opcao nao existe!\n\n");
                             getchar(); 
                             getchar();
                             break;
@@ -48,10 +48,10 @@
                 while(!voltar_consulta) {
                     system("clear");
                     printf("╔════════════════════════════════════════╗\n");
-                    printf("║             ÁREA DE CONSULTA           ║\n");
+                    printf("║             AREA DE CONSULTA           ║\n");
                     printf("╚════════════════════════════════════════╝\n\n");
-                    printf("1 - Consultar cliente\n2 - Consultar veículo\n3- Voltar\n\n");
-                    printf("\nSelecione a opção desejada: ");
+                    printf("1 - Consultar cliente\n2 - Consultar veiculo\n3- Voltar\n\n");
+                    printf("\nSelecione a opcao desejada: ");
                     scanf("%d",&opcao_consulta);
                     
                     switch(opcao_consulta){
@@ -69,7 +69,7 @@
                         }
                         default:{
                             system("clear");
-                            printf("⚠️ Opção não existe!\n\n");
+                            printf("⚠️ Opcao nao existe!\n\n");
                             getchar(); 
                             getchar();
                             break;
@@ -87,12 +87,12 @@
     while(!voltar_locacao) {
         printf("\033[2J\033[H");
         printf("╔════════════════════════════════════════╗\n");
-        printf("║             ÁREA DE LOCAÇÃO            ║\n");
+        printf("║             AREA DE LOCACAO            ║\n");
         printf("╚════════════════════════════════════════╝\n\n");
-        printf("1 - Alugar veículo\n");
-        printf("2 - Registros de locação\n");
+        printf("1 - Alugar veiculo\n");
+        printf("2 - Registros de locacao\n");
         printf("3 - Voltar\n\n");
-        printf("Selecione a opção desejada: ");
+        printf("Selecione a opcao desejada: ");
         scanf("%d", &opcao);
         
         switch(opcao) {
@@ -107,7 +107,7 @@
                 break;
             default:
                 system("clear");
-                printf("⚠️ Opção não existe!\n\n");
+                printf("⚠️ Opcao nao existe!\n\n");
                 getchar(); 
                 getchar();
                 break;
