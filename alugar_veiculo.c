@@ -9,7 +9,7 @@ void alugar_veiculo()
 {
     system("clear");
     printf("╔════════════════════════════════════════╗\n");
-    printf("║            LOCAÇÃO DE VEÍCULO          ║\n");
+    printf("║            LOCACAO DE VEICULO          ║\n");
     printf("╚════════════════════════════════════════╝\n\n");
     
     char cpf_cliente[12];
@@ -18,7 +18,7 @@ void alugar_veiculo()
     Cliente cliente;
     int cliente_encontrado = 0;
     
-    printf("Digite o CPF do cliente (11 dígitos): ");
+    printf("Digite o CPF do cliente (11 digitos): ");
     scanf("%11s", cpf_cliente);
     while (getchar() != '\n');
     
@@ -43,7 +43,7 @@ void alugar_veiculo()
     
     if(!cliente_encontrado)
     {
-        printf("❌ Cliente não encontrado ou inativo!\n");
+        printf("❌ Cliente nao encontrado ou inativo!\n");
         printf("Pressione Enter para voltar...");
         getchar();
         return;
@@ -64,7 +64,7 @@ void alugar_veiculo()
     FILE *arquivo_veiculos = fopen("veiculos.bin", "rb");
     if(arquivo_veiculos == NULL)
     {
-        printf("❌ Erro ao abrir arquivo de veículos!\n");
+        printf("❌ Erro ao abrir arquivo de veiculos!\n");
         printf("Pressione Enter para voltar...");
         getchar();
         return;
@@ -86,16 +86,16 @@ void alugar_veiculo()
     
     if(count == 0)
     {
-        printf("❌ Nenhum veículo disponível da marca %s para categoria %s\n", marca_desejada, categoria_cliente);
+        printf("❌ Nenhum veiculo disponivel da marca %s para categoria %s\n", marca_desejada, categoria_cliente);
         printf("Pressione Enter para voltar...");
         getchar();
-        getchar(); // Segundo getchar() para capturar o Enter
+        getchar();
         return;
     }
     
     system("clear");
     printf("\n╔════════════════════════════════════════╗\n");
-    printf("║         VEÍCULOS DISPONÍVEIS           ║\n");
+    printf("║         VEICULOS DISPONIVEIS           ║\n");
     printf("╚════════════════════════════════════════╝\n\n");
     
     for(int i = 0; i < count; i++){
@@ -103,12 +103,12 @@ void alugar_veiculo()
     }
     
     int opcao;
-    printf("\nSelecione o veículo desejado (1-%d): ", count);
+    printf("\nSelecione o veiculo desejado (1-%d): ", count);
     scanf("%d", &opcao);
     
     if(opcao < 1 || opcao > count)
     {
-        printf("❌ Opção inválida!\n");
+        printf("❌ Opcao invalida!\n");
         printf("Pressione Enter para voltar...");
         getchar();
         getchar();
@@ -118,19 +118,19 @@ void alugar_veiculo()
     Veiculo veiculo_escolhido = veiculos[opcao - 1];
     system("clear");
     printf("\n╔════════════════════════════════════════╗\n");
-    printf("║              VALOR DA DIÁRIA           ║\n");
+    printf("║              VALOR DA DIARIA           ║\n");
     printf("╚════════════════════════════════════════╝\n\n");
     printf("Veículo: %s %s\n", veiculo_escolhido.marca, veiculo_escolhido.modelo);
     printf("Placa: %s\n", veiculo_escolhido.placa);
     printf("Valor da diária: R$ %.2f\n\n", veiculo_escolhido.valor_diaria);
     
     int dias;
-    printf("Quantos dias deseja alugar o veículo? ");
+    printf("Quantos dias deseja alugar o veiculo? ");
     scanf("%d", &dias);
     
     if(dias <= 0)
     {
-        printf("❌ Quantidade de dias inválida!\n");
+        printf("❌ Quantidade de dias invalida!\n");
         printf("Pressione Enter para voltar...");
         getchar();
         getchar();
@@ -163,7 +163,7 @@ void alugar_veiculo()
     FILE *arquivo_locacoes = fopen("relatorios.bin", "ab");
     if(arquivo_locacoes == NULL)
     {
-        printf("❌ Erro ao salvar relatório!\n");
+        printf("❌ Erro ao salvar relatorio!\n");
         printf("Pressione Enter para voltar...");
         getchar();
         getchar();
@@ -191,16 +191,16 @@ void alugar_veiculo()
     
     system("clear");
     printf("╔════════════════════════════════════════╗\n");
-    printf("║         LOCAÇÃO CONCLUÍDA!            ║\n");
+    printf("║          LOCACAO CONCLUIDA!            ║\n");
     printf("╚════════════════════════════════════════╝\n\n");
     
-    printf("✅ Locação registrada com sucesso!\n\n");
+    printf("✅ Locacao registrada com sucesso!\n\n");
     printf("CLIENTE: %s\n", cliente.nome);
     printf("CPF: %s\n", cpf_cliente);
-    printf("VEÍCULO: %s %s\n", veiculo_escolhido.marca, veiculo_escolhido.modelo);
+    printf("VEICULO: %s %s\n", veiculo_escolhido.marca, veiculo_escolhido.modelo);
     printf("PLACA: %s\n", veiculo_escolhido.placa);
     printf("DATA DE ALUGUEL: %s\n", data_aluguel);
-    printf("DATA DE DEVOLUÇÃO: %s\n", data_devolucao);
+    printf("DATA DE DEVOLUCAO: %s\n", data_devolucao);
     printf("DIAS CONTRATADOS: %d\n", dias);
     printf("VALOR TOTAL: R$ %.2f\n\n", valor_total);
     printf("STATUS: ENTREGA NO PRAZO ✅\n\n");
